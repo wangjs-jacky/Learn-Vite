@@ -1,0 +1,21 @@
+{
+  "name": "11-vite-esbuild",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "build:command": "npx esbuild src/index.jsx --bundle --outfile=dist/out.js",
+    "command:build": "node ./scripts/command/build.js",
+    "command:serve": "node ./scripts/command/serve.js",
+    "command:watch": "node ./scripts/command/watch.js",
+    "transform": "node ./scripts/transform/index.js",
+    "plugin:vm": "node ./scripts/plugins/virtual-module.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "esbuild": "^0.17.13"
+  }
+}
