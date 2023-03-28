@@ -4,8 +4,10 @@ import viteLogo from "/vite.svg";
 import "./App.css";
 
 import loadable from "@loadable/component";
+import { ArrowKeyStepper } from "react-virtualized";
 
 console.log("loadable", loadable);
+console.log("reactVirtualized", ArrowKeyStepper);
 
 const importModule = (m: string) => import(`./locales/${m}.ts`);
 
