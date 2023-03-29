@@ -3,6 +3,6 @@
 import { render } from "https://cdn.skypack.dev/react-dom";
 import React from 'https://cdn.skypack.dev/react'
 
-let Greet = () => <h1>Hello, juejin!</h1>;
+let Greet = () => <h1>Hello, Jacky!</h1>;
 
 render(<Greet />, document.getElementById("root"));

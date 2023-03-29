@@ -7,7 +7,7 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const createScript = (src) => `<script type="module" src=${src}></script>`;
+const createScript = (src) => `<script type="module" src="${src}"></script>`;
 
 const createLink = (src) => `<link rel="stylesheet" href="${src}"></link>`;
 
@@ -50,17 +50,17 @@ const esbuildHTML = {
         const assets = Object.keys(outputs);
 
         assets.forEach((asset) => {
+          const relativePath = path.relative("dist/plugins", asset);
           if (asset.endsWith(".js")) {
-            scripts.push(createScript(asset));
+            scripts.push(createScript(relativePath));
           } else if (asset.endsWith(asset)) {
-            cssLinks.push(createLink(asset));
+            cssLinks.push(createLink(relativePath));
           }
         });
 
         const templateContent = generateHTML(scripts, cssLinks);
 
         /* 写入磁盘 */
-        console.log(__dirname);
         const templatePath = path.join(
           __dirname,
           "../../dist/plugins",
