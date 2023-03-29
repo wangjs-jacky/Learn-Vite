@@ -10,12 +10,15 @@
     "command:serve": "node ./scripts/command/serve.js",
     "command:watch": "node ./scripts/command/watch.js",
     "transform": "node ./scripts/transform/index.js",
-    "plugin:vm": "node ./scripts/plugins/virtual-module.js"
+    "plugin:vm": "node ./scripts/plugins/virtual-module.js",
+    "plugin:cdn": "node ./scripts/plugins/cdn-import-plugin.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "esbuild": "^0.17.13"
+    "esbuild": "^0.17.13",
+    "http": "0.0.1-security",
+    "https": "^1.0.0"
   }
 }
