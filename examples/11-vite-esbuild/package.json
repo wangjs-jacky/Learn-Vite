@@ -11,7 +11,8 @@
     "command:watch": "node ./scripts/command/watch.js",
     "transform": "node ./scripts/transform/index.js",
     "plugin:vm": "node ./scripts/plugins/virtual-module.js",
-    "plugin:cdn": "node ./scripts/plugins/cdn-import-plugin.js"
+    "plugin:cdn": "node ./scripts/plugins/cdn-import-plugin.js",
+    "plugin:html": "node ./scripts/plugins/html-plugin.js"
   },
   "keywords": [],
   "author": "",
