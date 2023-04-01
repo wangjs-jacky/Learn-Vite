@@ -1,0 +1,28 @@
+{
+  "name": "13-vite-rollup",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "command:nobundle": "npx rollup -c ./rollups/basic.rollup.js",
+    "command:umd": "npx rollup -c ./rollups/umd.rollup.js",
+    "command:lodash": "npx rollup -c ./rollups/lodash.rollup.js",
+    "command:build": "npx tsx ./scripts/build.ts",
+    "command:watch": "npx tsx ./scripts/watch.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "rollup": "^3.20.2",
+    "tslib": "^2.5.0"
+  },
+  "dependencies": {
+    "@rollup/plugin-commonjs": "^24.0.1",
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "@types/node": "^18.15.10",
+    "lodash": "^4.17.21",
+    "rollup-plugin-typescript2": "^0.34.1",
+    "tsx": "^3.12.6"
+  }
+}
