@@ -1,14 +1,13 @@
 import * as rollup from "rollup";
 import * as path from "path";
 import typescript from "rollup-plugin-typescript2";
-
-const srcPath = path.join(__dirname, "..", "src");
+import { SRC_PATH } from "const";
 
 const watcher = rollup.watch({
   // 和 rollup 配置文件中的属性基本一致，只不过多了`watch`配置
   input: [
-    path.join(srcPath, "/basic/index.ts"),
-    path.join(srcPath, "basic/util.ts"),
+    path.join(SRC_PATH, "/basic/index.ts"),
+    path.join(SRC_PATH, "basic/util.ts"),
   ],
   output: [
     {

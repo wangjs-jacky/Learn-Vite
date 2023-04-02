@@ -4,16 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "command:nobundle": "npx rollup -c ./rollups/basic.rollup.js",
-    "command:umd": "npx rollup -c ./rollups/umd.rollup.js",
-    "command:lodash": "npx rollup -c ./rollups/lodash.rollup.js",
-    "command:build": "npx tsx ./scripts/build.ts",
-    "command:watch": "npx tsx ./scripts/watch.ts"
+    "clean": "rm -rf ./dist",
+    "build:nobundle": "npx rollup -c ./rollups/basic.rollup.js",
+    "build:umd": "npx rollup -c ./rollups/umd.rollup.js",
+    "build:lodash": "npx rollup -c ./rollups/lodash.rollup.js",
+    "command:build": "npx tsx ./scripts/command/build.ts",
+    "command:watch": "npx tsx ./scripts/command/watch.ts",
+    "plugin:replace": "npx tsx ./scripts/plugins/replace-plugin.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@rollup/plugin-replace": "^5.0.2",
+    "magic-string": "^0.30.0",
     "rollup": "^3.20.2",
     "tslib": "^2.5.0"
   },
