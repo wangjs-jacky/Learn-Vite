@@ -84,6 +84,7 @@ importers:
 
   examples/13-vite-rollup:
     specifiers:
+      '@rollup/plugin-alias': ^4.0.3
       '@rollup/plugin-commonjs': ^24.0.1
       '@rollup/plugin-node-resolve': ^15.0.1
       '@rollup/plugin-replace': ^5.0.2
@@ -102,6 +103,7 @@ importers:
       rollup-plugin-typescript2: 0.34.1_rollup@3.20.2
       tsx: 3.12.6
     devDependencies:
+      '@rollup/plugin-alias': 4.0.3_rollup@3.20.2
       '@rollup/plugin-replace': 5.0.2_rollup@3.20.2
       magic-string: 0.30.0
       rollup: 3.20.2
