@@ -24,7 +24,7 @@ const inputOptions = {
 async function build() {
   const bundle = await rollup.rollup(inputOptions);
   await bundle.write({
-    dir: path.join(DIST_PATH, "plugin", "replace"),
+    dir: path.join(DIST_PATH, "transform", "replace"),
     format: "cjs",
   });
 }

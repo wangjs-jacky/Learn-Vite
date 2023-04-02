@@ -10,12 +10,15 @@
     "build:lodash": "npx rollup -c ./rollups/lodash.rollup.js",
     "command:build": "npx tsx ./scripts/command/build.ts",
     "command:watch": "npx tsx ./scripts/command/watch.ts",
-    "plugin:replace": "npx tsx ./scripts/plugins/replace-plugin.ts"
+    "plugin:alias": "npx tsx ./scripts/plugins/alias-plugin.ts",
+    "plugin:image": "npx tsx ./scripts/plugins/image-plugin.ts",
+    "plugin:replace": "npx tsx ./scripts/transform/replace-plugin.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@rollup/plugin-alias": "^4.0.3",
     "@rollup/plugin-replace": "^5.0.2",
     "magic-string": "^0.30.0",
     "rollup": "^3.20.2",
