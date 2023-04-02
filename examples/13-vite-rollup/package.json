@@ -12,7 +12,7 @@
     "command:watch": "npx tsx ./scripts/command/watch.ts",
     "plugin:alias": "npx tsx ./scripts/plugins/alias-plugin.ts",
     "plugin:image": "npx tsx ./scripts/plugins/image-plugin.ts",
-    "plugin:replace": "npx tsx ./scripts/transform/replace-plugin.ts"
+    "transform:replace": "npx tsx ./scripts/transform/replace-plugin.ts"
   },
   "keywords": [],
   "author": "",
