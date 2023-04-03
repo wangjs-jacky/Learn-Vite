@@ -7,8 +7,8 @@ const srcPath = path.join(__dirname, "..", "src");
  */
 const buildOptions = {
   input: [
-    path.join(srcPath, "/basic/index.ts"),
-    path.join(srcPath, "basic/util.ts"),
+    path.join(srcPath, "basic/index.ts"),
+    /* path.join(srcPath, "basic/util.ts"), */
   ],
   output: [
     {

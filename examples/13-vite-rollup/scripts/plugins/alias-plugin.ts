@@ -13,7 +13,7 @@ const inputOptions = {
       entries: [{ find: "util-a", replacement: "./util.js" }],
     }),
     alias({
-      entries: [{ find: "other-util", replacement: "./util.js" }],
+      entries: [{ find: "util-b", replacement: "./util.js" }],
     }),
   ],
 };
@@ -42,7 +42,7 @@ function myAlias(options) {
     name: "myAlias",
     // 传入三个参数，当前模块路径、引用当前模块的模块路径、其余参数
     resolveId(importee, importer, resolveOptions) {
-      log(importee, importer, "alias-plugin");
+      log(importee, importer, "myAlias");
       // 根据 find 过滤出模块
       const matchedEntry = entries.find(
         (entry) =>
