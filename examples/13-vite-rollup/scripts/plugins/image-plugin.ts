@@ -2,6 +2,7 @@ import * as rollup from "rollup";
 import * as path from "path";
 import * as fs from "fs";
 import { DIST_PATH, SRC_PATH } from "const";
+import * as svgToMiniDataURI from "mini-svg-data-uri";
 
 const defaultOption = {
   dom: false,
@@ -46,7 +47,9 @@ function myImage(opts = {}) {
       const isSvg = fileExtname === ".svg";
       const format = isSvg ? "utf-8" : "base64";
       const source = fs.readFileSync(id, format).replace(/[\r\n]+/gm, "");
-      const dataUri = `data:${mime};${format},${source}`;
+      const dataUri = isSvg
+        ? svgToMiniDataURI(source)
+        : `data:${mime};${format},${source}`;
       const code = options.dom
         ? domTemplate({ dataUri })
         : constTemplate({ dataUri });

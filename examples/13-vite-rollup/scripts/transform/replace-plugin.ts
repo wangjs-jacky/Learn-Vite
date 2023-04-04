@@ -11,11 +11,11 @@ const inputOptions = {
   external: [],
   plugins: [
     replace({
-      "process.env.Jacky": "'Jacky'",
+      "process.env.Jacky": "'Jacky!!!'",
     }),
     myReplace({
-      "process.env.Hello1": "'Jack!!!'",
-      "process.env.World2": () => "'Jack!!!'",
+      "process.env.Hello": "'Jack!!!'",
+      "process.env.World": () => "'Jack!!!'",
       delimiters: ["\\b", "\\b(?!\\.)"],
     }),
   ],
@@ -51,7 +51,6 @@ function myReplace(opts = {}) {
     name: "rollup:replace",
     transform(code, id) {
       if (!keys.length) return null;
-      debugger;
       return executeReplacement(code, id);
     },
   };
