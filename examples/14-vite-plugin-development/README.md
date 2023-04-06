@@ -6,7 +6,7 @@
 
 ## 示例
 
-主要提供二个插件示例：
+主要提供两个插件示例：
 
 1. `plugins/svgr.ts` ：将 `svg` 图片转化为 `react` 组件
 2. `plugins/virtual-module.ts` ：将编译时信息打入运行时。
