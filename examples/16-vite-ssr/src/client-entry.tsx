@@ -1,0 +1,13 @@
+// 客户端入口文件
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+
+/* 注此时，ReactDOM.creatRoot 或 render */
+ReactDOM.hydrate(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById("root"),
+);
