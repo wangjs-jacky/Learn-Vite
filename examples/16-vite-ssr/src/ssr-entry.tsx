@@ -3,8 +3,12 @@
 import App from "./App";
 import "./index.css";
 
-function ServerEntry(props: any) {
+export function ServerEntry(props: any) {
   return <App />;
 }
 
-export { ServerEntry };
+export async function fetchData() {
+  return {
+    user: "xxx",
+  };
+}

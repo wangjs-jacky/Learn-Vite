@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 
-/* 注此时，ReactDOM.creatRoot 或 render */
+/* 注此时，渲染方式不再是 ReactDOM.creatRoot 或 render */
 ReactDOM.hydrate(
   <React.StrictMode>
     <App />
