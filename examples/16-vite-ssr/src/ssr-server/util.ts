@@ -27,6 +27,7 @@ export function resolveTemplatePath() {
 
 /* 判断是否为首页，如果为首页，则返回 html 模板，否则跳过 */
 export function matchPageUrl(url: string) {
+  url = url.split("?")[0];
   if (url === "/") {
     return true;
   }

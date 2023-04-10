@@ -9,9 +9,21 @@ import {
   resolveTemplatePath,
 } from "./util";
 import serve from "serve-static";
+import { performance, PerformanceObserver } from "perf_hooks";
+
 import { renderToString } from "react-dom/server";
 import * as fs from "fs";
 import React from "react";
+
+/* 初始化监听器逻辑 */
+const perfObserver = new PerformanceObserver((items) => {
+  items.getEntries().forEach((entry) => {
+    console.log("[performance]", entry.name, entry.duration.toFixed(2), "ms");
+    performance.clearMarks();
+  });
+});
+
+perfObserver.observe({ entryTypes: ["measure"] });
 
 async function createServer() {
   const app = express();
@@ -48,37 +60,58 @@ async function createSsrMiddleware(app: Express): Promise<RequestHandler> {
     app.use(vite.middlewares);
   }
   return async (req, res, next) => {
-    const url = req.originalUrl;
-    if (!matchPageUrl(url)) {
-      return await next();
-    }
+    try {
+      /* 获取 html */
+      const templatePath = resolveTemplatePath();
+      let template = fs.readFileSync(templatePath, "utf-8");
 
-    /* 传入 vite , 在生产阶段为 null */
-    /* 1. 加载服务端入口组件模块 */
-    const { ServerEntry, fetchData } = await loadSsrEntryModule(vite);
+      const url = req.originalUrl;
+      if (!matchPageUrl(url)) {
+        return await next();
+      }
 
-    /* 2. 首屏数据获取 */
-    const data = await fetchData();
-    /* 3. 拼接 html  */
-    const appHtml = renderToString(React.createElement(ServerEntry, { data }));
+      if ("csr" in req.query) {
+        // 响应 CSR 模板内容
+        const html123 = await vite?.transformIndexHtml(url, template);
+        res.status(200).setHeader("Content-Type", "text/html").end(html123);
+        return;
+      }
 
-    /* 获取 html */
-    const templatePath = resolveTemplatePath();
-    let template = fs.readFileSync(templatePath, "utf-8");
-    /* 若为开发阶段 */
-    if (!isProd && vite) {
-      /* html 代码由 vite.transformIndexHtml 获取 */
-      template = await vite.transformIndexHtml(url, template);
-    }
+      /* 传入 vite , 在生产阶段为 null */
+      /* 1. 加载服务端入口组件模块 */
+      const { ServerEntry, fetchData } = await loadSsrEntryModule(vite);
 
-    /* 手动模板引擎 */
-    const html = template
-      .replace("<!-- SSR_APP -->", appHtml)
-      .replace(
-        "<!-- SSR_DATA -->",
-        `<script>window.__SSR_DATA__=${JSON.stringify(data)}</script>`,
+      /* 2. 首屏数据获取 */
+      const data = await fetchData();
+
+      performance.mark("render-start");
+      /* 3. 拼接 html  */
+      const appHtml = renderToString(
+        React.createElement(ServerEntry, { data }),
       );
-    /* 通过中间件给客户端返回 html 字符 */
-    res.status(200).setHeader("Content-Type", "text/html").end(html);
+
+      performance.mark("render-end");
+      performance.measure("renderToString", "render-start", "render-end");
+
+      /* 若为开发阶段 */
+      if (!isProd && vite) {
+        /* html 代码由 vite.transformIndexHtml 获取 */
+        template = await vite.transformIndexHtml(url, template);
+      }
+
+      /* 手动模板引擎 */
+      const html = template
+        .replace("<!-- SSR_APP -->", appHtml)
+        .replace(
+          "<!-- SSR_DATA -->",
+          `<script>window.__SSR_DATA__=${JSON.stringify(data)}</script>`,
+        );
+      /* 通过中间件给客户端返回 html 字符 */
+      res.status(200).setHeader("Content-Type", "text/html").end(html);
+    } catch (e: any) {
+      vite?.ssrFixStacktrace(e);
+      console.error("ssr端构建失败:", e);
+      res.status(500).end(e.message);
+    }
   };
 }
