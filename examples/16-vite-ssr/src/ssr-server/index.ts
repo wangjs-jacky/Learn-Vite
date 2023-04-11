@@ -72,8 +72,8 @@ async function createSsrMiddleware(app: Express): Promise<RequestHandler> {
 
       if ("csr" in req.query) {
         // 响应 CSR 模板内容
-        const html123 = await vite?.transformIndexHtml(url, template);
-        res.status(200).setHeader("Content-Type", "text/html").end(html123);
+        const html = await vite?.transformIndexHtml(url, template);
+        res.status(200).setHeader("Content-Type", "text/html").end(html);
         return;
       }
 
