@@ -2,7 +2,7 @@
 
 ## 目录：
 
-1. [07-vite-prebundle](./examples/07-vite-prebundle/)： `ESBuild` 基础使用及插件开发案例。
+1. [07-vite-prebundle](./examples/07-vite-prebundle/)：`Vite` 预构建基础及优化案例。
 2. [11-vite-esbuild](./examples/11-vite-esbuild/)： `ESBuild` 基础使用及插件开发案例。
 3. [13-vite-rollup](./examples/13-vite-rollup/)： `Rollup` 基础使用及插件开发案例。
 3. [14-vite-plugin-development](./examples/14-vite-plugin-development/)： `Vite` 插件开发案例。
