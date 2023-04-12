@@ -3,12 +3,15 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 
+/* 预构建问题：可不可以排除掉 loadable 这个 ESM 包？ */
 import loadable from "@loadable/component";
+/* 预构建问题：如何解决那些第三方包天然 vite 报错的问题 */
 import { ArrowKeyStepper } from "react-virtualized";
 
 console.log("loadable", loadable);
 console.log("reactVirtualized", ArrowKeyStepper);
 
+/* 预构建优化：动态导入 zh_CN.ts 模块，无法对其内部的模块进行分析 */
 const importModule = (m: string) => import(`./locales/${m}.ts`);
 
 function App() {
